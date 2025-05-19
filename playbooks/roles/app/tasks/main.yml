@@ -1,32 +1,14 @@
-- name: Deploy Voting App on localhost
-  hosts: localhost
-  become: yes
-  become_user: root
-  gather_facts: no
-  vars:
-    app_repo: "https://github.com/example/voting-app.git"
-    app_dir: "/opt/voting-app"
-    custom_options:
-      commands:
-        - "git clone {{ app_repo }} {{ app_dir }}"
-        - "cd {{ app_dir }} && pip install -r requirements.txt"
-        - "cd {{ app_dir }} && python app.py"
-      services:
-        - "voting-app"
+---
+- name: Install tree package
+  ansible.builtin.apt:
+    name: tree
+    state: present
+    update_cache: yes
 
-  tasks:
-    - name: Debug customOptions
-      debug:
-        var: custom_options
-
-    - name: Run commands from customOptions
-      shell: "{{ item }}"
-      with_items: "{{ custom_options.commands }}"
-      when: custom_options.commands is defined
-
-    - name: Start services from customOptions
-      service:
-        name: "{{ item }}"
-        state: started
-      with_items: "{{ custom_options.services }}"
-      when: custom_options.services is defined
+- name: Copy custom configuration file
+  ansible.builtin.copy:
+    src: ./files/my_config.conf
+    dest: /etc/myapp/my_config.conf
+    owner: root
+    group: root
+    mode: '0644'
