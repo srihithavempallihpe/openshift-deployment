@@ -1,1 +1,7 @@
+---
+- name: Setup voting app
+  hosts: localhost
+  gather_facts: False
+  roles:
+    - role: roles/app
 
