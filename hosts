@@ -1,2 +1,2 @@
-[local]
-localhost ansible_connection=local
+[all]
+172.28.0.56
