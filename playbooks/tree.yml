@@ -1,5 +1,5 @@
 ---
-- name: Setup voting app
+- name: Setup tree
   hosts: localhost
   gather_facts: False
   roles:
