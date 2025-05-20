@@ -12,3 +12,7 @@
     owner: root
     group: root
     mode: '0644'
+    
+- name: Set msg of tree configuration
+  ansible.builtin.debug:
+    msg: "{{ morpheus['customOptions']['msg_var'] }}"
