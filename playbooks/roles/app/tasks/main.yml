@@ -1,6 +1,6 @@
 ---
 - name: Install tree package
-  ansible.builtin.apt:
+  ansible.builtin.yum:
     name: tree
     state: present
     update_cache: yes
