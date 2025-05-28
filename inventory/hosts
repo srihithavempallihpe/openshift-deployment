@@ -2,4 +2,4 @@
 ansible_user=root 
 
 [node1]
-172.28.0.56
+172.28.0.180
